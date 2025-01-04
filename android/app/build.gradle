@@ -1,0 +1,56 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.example.qr_code_scanner_generator"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId "com.example.qr_code_scanner_generator"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+
+        // Enable multiDex if necessary
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug // Change this to a release config in production
+        }
+    }
+
+    dependencies {
+        implementation 'androidx.appcompat:appcompat:1.5.1'
+        implementation 'androidx.core:core-ktx:1.9.0'
+        implementation 'com.google.android.material:material:1.7.0'
+        implementation 'androidx.multidex:multidex:2.0.1'
+        
+        // Include local .aar files if manually added
+        implementation fileTree(dir: 'libs', include: ['*.aar'])
+    }
+}
+
+flutter {
+    source = "../.."
+}
